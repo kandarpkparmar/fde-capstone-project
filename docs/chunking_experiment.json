@@ -1,0 +1,37 @@
+[
+  {
+    "strategy": "whole",
+    "chunks": 29,
+    "hit_at_4": 0.9636,
+    "mrr": 0.9171,
+    "n_tickets": 357
+  },
+  {
+    "strategy": "section",
+    "chunks": 116,
+    "hit_at_4": 0.9608,
+    "mrr": 0.9293,
+    "n_tickets": 357
+  },
+  {
+    "strategy": "fixed800",
+    "chunks": 58,
+    "hit_at_4": 0.958,
+    "mrr": 0.9183,
+    "n_tickets": 357
+  },
+  {
+    "strategy": "fixed400",
+    "chunks": 106,
+    "hit_at_4": 0.9608,
+    "mrr": 0.9188,
+    "n_tickets": 357
+  },
+  {
+    "strategy": "fixed250",
+    "chunks": 159,
+    "hit_at_4": 0.9496,
+    "mrr": 0.9111,
+    "n_tickets": 357
+  }
+]
