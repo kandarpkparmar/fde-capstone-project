@@ -1,5 +1,9 @@
 # CloudServe Support Triage
 
+![CI](https://github.com/kandarpkparmar/fde-capstone-project/actions/workflows/ci.yml/badge.svg)
+
+Repository: https://github.com/kandarpkparmar/fde-capstone-project
+
 Individual capstone (Forward Deployed AI Engineering). Instead of the chatbot the client asked for, this is a
 **triage-and-retrieval system**: it answers the tickets whose answers already exist in CloudServe's documentation
 (citing the article), escalates everything else *with context attached* (summary, priority, relevant articles,
@@ -12,7 +16,7 @@ ingest -> classify -> retrieve -> route -> generate -> validate(guardrails) -> a
 
 ## 1. Set up (clean machine, tested from a fresh clone)
 
-Requires Python 3.11+ and internet access on first run (downloads the small embedding model, ~90 MB).
+Requires Python 3.11 or newer (tested on 3.11 and 3.13 locally and in CI) and internet access on first run (downloads the small embedding model, ~90 MB).
 
 ```bash
 git clone https://github.com/kandarpkparmar/fde-capstone-project.git && cd fde-capstone-project
