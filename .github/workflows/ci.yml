@@ -13,9 +13,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -r requirements.txt
-      - name: Tests (no model key needed: LLM is disabled/faked in tests)
+      - name: "Tests (no model key needed, the model is faked in tests)"
         run: python -m pytest tests/ -v
         env:
           LLM_ENABLED: "0"
-      - name: Unattended run over the validation set with the model off (degraded mode must still complete)
+      - name: "Unattended run over the validation set with the model off (degraded mode must still complete)"
         run: python -m evaluation.harness --input data/validation_tickets.json --output evaluation/results/ci_run --no-llm --judge 0
+        env:
+          LLM_ENABLED: "0"
