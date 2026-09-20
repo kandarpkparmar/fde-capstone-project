@@ -1,6 +1,6 @@
 """Live demo used in the video:  python -m src.demo   (set LLM_ENABLED=0 to demonstrate provider outage)."""
-import json
 import logging
+import uuid
 
 from . import config
 from .pipeline import SupportPipeline
@@ -20,9 +20,10 @@ CASES = [
 
 def main():
     pipe = SupportPipeline()
+    run_id = "demo-" + uuid.uuid4().hex[:8]   # unique per run so repeated demos reconcile
     print(f"backend={pipe.retriever.backend} llm={'ON ' + pipe.llm.model if pipe.llm.enabled and pipe.llm.api_key else 'OFF (template fallback)'}\n")
     for label, raw in CASES:
-        r = pipe.process(raw, run_id="demo")
+        r = pipe.process(raw, run_id=run_id)
         print("=" * 100)
         print(f"{label}\n  -> action={r['action']}  intent={r['intent']} ({r['confidence']})  urgency={r['urgency']}  latency={r['latency_s']}s  source={r['generation_source']}")
         print(f"  reason: {r['reason'][:230]}")
@@ -33,7 +34,7 @@ def main():
         elif r["escalation_packet"]:
             pk = r["escalation_packet"]
             print(f"  ESCALATION PACKET ({pk['priority']}): {pk['summary'][:420]}")
-    print("\nDecisions logged for this demo:", pipe.dlog.reconcile("demo", len(CASES)))
+    print("\nDecisions logged for this demo:", pipe.dlog.reconcile(run_id, len(CASES)))
 
 
 if __name__ == "__main__":
