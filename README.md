@@ -15,7 +15,7 @@ ingest -> classify -> retrieve -> route -> generate -> validate(guardrails) -> a
 Requires Python 3.11+ and internet access on first run (downloads the small embedding model, ~90 MB).
 
 ```bash
-git clone <this repo> capstone && cd capstone          # or unzip 04_Source_Code
+git clone https://github.com/kandarpkparmar/fde-capstone-project.git && cd fde-capstone-project
 python3 -m venv .venv
 source .venv/bin/activate                              # Windows: .venv\Scripts\activate
 python -m pip install --upgrade pip
