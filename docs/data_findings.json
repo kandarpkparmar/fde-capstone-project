@@ -1,0 +1,605 @@
+{
+  "n": 500,
+  "channels": {
+    "chat": 155,
+    "docs_comment": 78,
+    "email": 212,
+    "forum": 55
+  },
+  "urgency": {
+    "high": 146,
+    "medium": 226,
+    "low": 128
+  },
+  "intents": [
+    [
+      "data_export",
+      29
+    ],
+    [
+      "data_residency",
+      29
+    ],
+    [
+      "rollback_request",
+      28
+    ],
+    [
+      "deployment_failure",
+      27
+    ],
+    [
+      "compliance_request",
+      26
+    ],
+    [
+      "sso_configuration",
+      26
+    ],
+    [
+      "security_incident",
+      26
+    ],
+    [
+      "database_issue",
+      26
+    ],
+    [
+      "api_usage_question",
+      24
+    ],
+    [
+      "billing_query",
+      24
+    ],
+    [
+      "performance_degradation",
+      23
+    ],
+    [
+      "quota_or_overage",
+      23
+    ],
+    [
+      "account_access",
+      22
+    ],
+    [
+      "onboarding",
+      22
+    ],
+    [
+      "integration_help",
+      21
+    ],
+    [
+      "webhook_issue",
+      21
+    ],
+    [
+      "feature_request",
+      20
+    ],
+    [
+      "authentication_failure",
+      20
+    ],
+    [
+      "api_key_issue",
+      18
+    ],
+    [
+      "configuration_help",
+      17
+    ],
+    [
+      "unclear_request",
+      15
+    ],
+    [
+      "rate_limit",
+      13
+    ]
+  ],
+  "fcr": 0.438,
+  "escalated": 0.562,
+  "csat_mean": 2.972,
+  "median_resolution_min": 214.0,
+  "mean_resolution_min": 421.7,
+  "repeat_rate": 0.216,
+  "answerable_share": 0.714,
+  "must_not_auto_share": 0.174,
+  "expected_auto_share": 0.622,
+  "non_fluent_share": 0.24,
+  "by_fluency": {
+    "fluent": {
+      "n": 380,
+      "fcr": 0.432,
+      "escalated": 0.568,
+      "csat": 2.95,
+      "median_resolution_min": 216.5,
+      "repeat": 0.224,
+      "answerable": 0.711
+    },
+    "non_fluent": {
+      "n": 120,
+      "fcr": 0.458,
+      "escalated": 0.542,
+      "csat": 3.042,
+      "median_resolution_min": 198.0,
+      "repeat": 0.192,
+      "answerable": 0.725
+    }
+  },
+  "by_tier": {
+    "business": {
+      "n": 164,
+      "fcr": 0.482,
+      "escalated": 0.518,
+      "csat": 2.915,
+      "median_resolution_min": 141.0,
+      "repeat": 0.232,
+      "answerable": 0.75
+    },
+    "enterprise": {
+      "n": 83,
+      "fcr": 0.373,
+      "escalated": 0.627,
+      "csat": 3.048,
+      "median_resolution_min": 369,
+      "repeat": 0.241,
+      "answerable": 0.711
+    },
+    "standard": {
+      "n": 253,
+      "fcr": 0.431,
+      "escalated": 0.569,
+      "csat": 2.984,
+      "median_resolution_min": 266,
+      "repeat": 0.198,
+      "answerable": 0.692
+    }
+  },
+  "by_channel": {
+    "chat": {
+      "n": 155,
+      "fcr": 0.445,
+      "escalated": 0.555,
+      "csat": 2.723,
+      "median_resolution_min": 209,
+      "repeat": 0.194,
+      "answerable": 0.768
+    },
+    "docs_comment": {
+      "n": 78,
+      "fcr": 0.346,
+      "escalated": 0.654,
+      "csat": 3.167,
+      "median_resolution_min": 465.5,
+      "repeat": 0.333,
+      "answerable": 0.615
+    },
+    "email": {
+      "n": 212,
+      "fcr": 0.448,
+      "escalated": 0.552,
+      "csat": 3.08,
+      "median_resolution_min": 193.0,
+      "repeat": 0.208,
+      "answerable": 0.722
+    },
+    "forum": {
+      "n": 55,
+      "fcr": 0.509,
+      "escalated": 0.491,
+      "csat": 2.982,
+      "median_resolution_min": 54,
+      "repeat": 0.145,
+      "answerable": 0.673
+    }
+  },
+  "by_region": {
+    "asia_pacific": {
+      "n": 119,
+      "fcr": 0.395,
+      "escalated": 0.605,
+      "csat": 2.941,
+      "median_resolution_min": 292,
+      "repeat": 0.218,
+      "answerable": 0.639
+    },
+    "europe": {
+      "n": 151,
+      "fcr": 0.437,
+      "escalated": 0.563,
+      "csat": 3.007,
+      "median_resolution_min": 198,
+      "repeat": 0.219,
+      "answerable": 0.762
+    },
+    "latin_america": {
+      "n": 60,
+      "fcr": 0.383,
+      "escalated": 0.617,
+      "csat": 2.733,
+      "median_resolution_min": 235.0,
+      "repeat": 0.25,
+      "answerable": 0.717
+    },
+    "north_america": {
+      "n": 170,
+      "fcr": 0.488,
+      "escalated": 0.512,
+      "csat": 3.047,
+      "median_resolution_min": 109.5,
+      "repeat": 0.2,
+      "answerable": 0.724
+    }
+  },
+  "by_urgency": {
+    "high": {
+      "n": 146,
+      "fcr": 0.397,
+      "escalated": 0.603,
+      "csat": 2.863,
+      "median_resolution_min": 342.5,
+      "repeat": 0.205,
+      "answerable": 0.726
+    },
+    "low": {
+      "n": 128,
+      "fcr": 0.484,
+      "escalated": 0.516,
+      "csat": 3.062,
+      "median_resolution_min": 132.5,
+      "repeat": 0.148,
+      "answerable": 0.727
+    },
+    "medium": {
+      "n": 226,
+      "fcr": 0.438,
+      "escalated": 0.562,
+      "csat": 2.991,
+      "median_resolution_min": 187.5,
+      "repeat": 0.261,
+      "answerable": 0.699
+    }
+  },
+  "by_intent": {
+    "account_access": {
+      "n": 22,
+      "fcr": 0.591,
+      "escalated": 0.409,
+      "csat": 3.091,
+      "median_resolution_min": 44.0,
+      "repeat": 0.136,
+      "answerable": 0.773
+    },
+    "api_key_issue": {
+      "n": 18,
+      "fcr": 0.556,
+      "escalated": 0.444,
+      "csat": 3.111,
+      "median_resolution_min": 39.5,
+      "repeat": 0.111,
+      "answerable": 0.667
+    },
+    "api_usage_question": {
+      "n": 24,
+      "fcr": 0.583,
+      "escalated": 0.417,
+      "csat": 3.292,
+      "median_resolution_min": 52.0,
+      "repeat": 0.167,
+      "answerable": 0.958
+    },
+    "authentication_failure": {
+      "n": 20,
+      "fcr": 0.5,
+      "escalated": 0.5,
+      "csat": 2.75,
+      "median_resolution_min": 160.5,
+      "repeat": 0.05,
+      "answerable": 0.7
+    },
+    "billing_query": {
+      "n": 24,
+      "fcr": 0.542,
+      "escalated": 0.458,
+      "csat": 3.333,
+      "median_resolution_min": 46.0,
+      "repeat": 0.208,
+      "answerable": 0.875
+    },
+    "compliance_request": {
+      "n": 26,
+      "fcr": 0,
+      "escalated": 1,
+      "csat": 2.346,
+      "median_resolution_min": 678.5,
+      "repeat": 0.423,
+      "answerable": 0.654
+    },
+    "configuration_help": {
+      "n": 17,
+      "fcr": 0.471,
+      "escalated": 0.529,
+      "csat": 2.765,
+      "median_resolution_min": 124,
+      "repeat": 0.412,
+      "answerable": 0.588
+    },
+    "data_export": {
+      "n": 29,
+      "fcr": 0.655,
+      "escalated": 0.345,
+      "csat": 3.172,
+      "median_resolution_min": 40,
+      "repeat": 0.207,
+      "answerable": 0.931
+    },
+    "data_residency": {
+      "n": 29,
+      "fcr": 0.31,
+      "escalated": 0.69,
+      "csat": 3,
+      "median_resolution_min": 319,
+      "repeat": 0.241,
+      "answerable": 0.724
+    },
+    "database_issue": {
+      "n": 26,
+      "fcr": 0.269,
+      "escalated": 0.731,
+      "csat": 2.846,
+      "median_resolution_min": 387.5,
+      "repeat": 0.269,
+      "answerable": 0.692
+    },
+    "deployment_failure": {
+      "n": 27,
+      "fcr": 0.407,
+      "escalated": 0.593,
+      "csat": 2.852,
+      "median_resolution_min": 384,
+      "repeat": 0.259,
+      "answerable": 0.704
+    },
+    "feature_request": {
+      "n": 20,
+      "fcr": 0,
+      "escalated": 1,
+      "csat": 3.15,
+      "median_resolution_min": 737.5,
+      "repeat": 0.5,
+      "answerable": 0
+    },
+    "integration_help": {
+      "n": 21,
+      "fcr": 0.381,
+      "escalated": 0.619,
+      "csat": 3.19,
+      "median_resolution_min": 268,
+      "repeat": 0.238,
+      "answerable": 0.762
+    },
+    "onboarding": {
+      "n": 22,
+      "fcr": 0.727,
+      "escalated": 0.273,
+      "csat": 3.091,
+      "median_resolution_min": 40.0,
+      "repeat": 0.182,
+      "answerable": 0.909
+    },
+    "performance_degradation": {
+      "n": 23,
+      "fcr": 0.304,
+      "escalated": 0.696,
+      "csat": 2.478,
+      "median_resolution_min": 482,
+      "repeat": 0.217,
+      "answerable": 0.739
+    },
+    "quota_or_overage": {
+      "n": 23,
+      "fcr": 0.739,
+      "escalated": 0.261,
+      "csat": 2.609,
+      "median_resolution_min": 37,
+      "repeat": 0.043,
+      "answerable": 0.87
+    },
+    "rate_limit": {
+      "n": 13,
+      "fcr": 0.769,
+      "escalated": 0.231,
+      "csat": 3.077,
+      "median_resolution_min": 35,
+      "repeat": 0.077,
+      "answerable": 0.923
+    },
+    "rollback_request": {
+      "n": 28,
+      "fcr": 0.607,
+      "escalated": 0.393,
+      "csat": 3.214,
+      "median_resolution_min": 49.0,
+      "repeat": 0.143,
+      "answerable": 0.75
+    },
+    "security_incident": {
+      "n": 26,
+      "fcr": 0,
+      "escalated": 1,
+      "csat": 2.654,
+      "median_resolution_min": 734.5,
+      "repeat": 0.269,
+      "answerable": 0.538
+    },
+    "sso_configuration": {
+      "n": 26,
+      "fcr": 0.731,
+      "escalated": 0.269,
+      "csat": 3.731,
+      "median_resolution_min": 47.0,
+      "repeat": 0.077,
+      "answerable": 0.846
+    },
+    "unclear_request": {
+      "n": 15,
+      "fcr": 0,
+      "escalated": 1,
+      "csat": 2.4,
+      "median_resolution_min": 437,
+      "repeat": 0.333,
+      "answerable": 0
+    },
+    "webhook_issue": {
+      "n": 21,
+      "fcr": 0.524,
+      "escalated": 0.476,
+      "csat": 3,
+      "median_resolution_min": 55,
+      "repeat": 0.19,
+      "answerable": 0.762
+    }
+  },
+  "answerable_but_historically_escalated": 0.387,
+  "answerable_count": 357,
+  "answerable_escalated_count": 138,
+  "escalations_total": 281,
+  "share_of_escalations_that_were_answerable": 0.491,
+  "effort_by_intent": [
+    {
+      "intent": "security_incident",
+      "volume_share": 0.052,
+      "effort_share": 0.097
+    },
+    {
+      "intent": "compliance_request",
+      "volume_share": 0.052,
+      "effort_share": 0.084
+    },
+    {
+      "intent": "data_residency",
+      "volume_share": 0.058,
+      "effort_share": 0.071
+    },
+    {
+      "intent": "feature_request",
+      "volume_share": 0.04,
+      "effort_share": 0.069
+    },
+    {
+      "intent": "deployment_failure",
+      "volume_share": 0.054,
+      "effort_share": 0.062
+    },
+    {
+      "intent": "performance_degradation",
+      "volume_share": 0.046,
+      "effort_share": 0.059
+    },
+    {
+      "intent": "database_issue",
+      "volume_share": 0.052,
+      "effort_share": 0.056
+    },
+    {
+      "intent": "integration_help",
+      "volume_share": 0.042,
+      "effort_share": 0.052
+    },
+    {
+      "intent": "rollback_request",
+      "volume_share": 0.056,
+      "effort_share": 0.046
+    },
+    {
+      "intent": "billing_query",
+      "volume_share": 0.048,
+      "effort_share": 0.045
+    },
+    {
+      "intent": "authentication_failure",
+      "volume_share": 0.04,
+      "effort_share": 0.043
+    },
+    {
+      "intent": "api_usage_question",
+      "volume_share": 0.048,
+      "effort_share": 0.041
+    },
+    {
+      "intent": "data_export",
+      "volume_share": 0.058,
+      "effort_share": 0.04
+    },
+    {
+      "intent": "unclear_request",
+      "volume_share": 0.03,
+      "effort_share": 0.037
+    },
+    {
+      "intent": "webhook_issue",
+      "volume_share": 0.042,
+      "effort_share": 0.035
+    },
+    {
+      "intent": "account_access",
+      "volume_share": 0.044,
+      "effort_share": 0.03
+    },
+    {
+      "intent": "quota_or_overage",
+      "volume_share": 0.046,
+      "effort_share": 0.029
+    },
+    {
+      "intent": "configuration_help",
+      "volume_share": 0.034,
+      "effort_share": 0.028
+    },
+    {
+      "intent": "api_key_issue",
+      "volume_share": 0.036,
+      "effort_share": 0.025
+    },
+    {
+      "intent": "sso_configuration",
+      "volume_share": 0.052,
+      "effort_share": 0.024
+    },
+    {
+      "intent": "onboarding",
+      "volume_share": 0.044,
+      "effort_share": 0.021
+    },
+    {
+      "intent": "rate_limit",
+      "volume_share": 0.026,
+      "effort_share": 0.008
+    }
+  ],
+  "duplicate_text_groups": 78,
+  "duplicate_groups_with_conflicting_route_labels": 41,
+  "unique_texts": 216,
+  "doc_covered_intents_not_answerable_share": 0.211,
+  "disagreements": {
+    "marcus_fcr_42_vs_data": 0.438,
+    "marcus_escalation_58_vs_data": 0.562,
+    "sofia_nonfluent_worst_csat": {
+      "non_fluent": 3.042,
+      "fluent": 2.95
+    },
+    "sofia_seven_in_ten_seen_before_vs_answerable": 0.714,
+    "daniel_half_of_escalations_resolvable": 0.491,
+    "ravi_enterprise_answers_faster": {
+      "business": 141.0,
+      "enterprise": 369,
+      "standard": 266
+    }
+  },
+  "articles": 29
+}

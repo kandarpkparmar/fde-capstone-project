@@ -4,6 +4,7 @@ storage/
 __pycache__/
 *.pyc
 .pytest_cache/
-evaluation/results/*
-!evaluation/results/.gitkeep
 .DS_Store
+evaluation/results/ci_run/
+evaluation/results/live_run/
+evaluation/results/my_run/

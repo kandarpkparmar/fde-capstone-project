@@ -23,6 +23,19 @@ REQ = {"ingest": ["FR-01"], "classification": ["FR-02"], "retrieval": ["FR-03"],
        "generation": ["FR-04", "FR-09", "FR-14"], "validation": ["FR-06"], "outcome": ["FR-08"]}
 
 
+def select_for_generation(passages, ratio: float = 0.9):
+    """Give the model only the best article's passages (plus another article scoring within 10% of it):
+    less noise, fewer tokens, more precise citations."""
+    if not passages:
+        return []
+    top = passages[0].score
+    docs = [passages[0].doc_id]
+    for p in passages[1:]:
+        if p.doc_id not in docs and p.score >= ratio * top:
+            docs.append(p.doc_id)
+    return [p for p in passages if p.doc_id in docs]
+
+
 def kill_switch_on() -> bool:
     return config.KILL_SWITCH_FILE.exists()
 
@@ -99,7 +112,8 @@ class SupportPipeline:
                 return self._finish(run_id, ticket, out, t0)
             stage = "generation"
             llm = self.llm if use_llm else LLMClient(enabled=False)
-            gen = generate(ticket, passages, llm, self.retriever)
+            gen_passages = select_for_generation(passages)
+            gen = generate(ticket, gen_passages, llm, self.retriever)
             out["generation_source"] = gen.source
             if gen.source == "template":
                 out["degraded"].append("llm_fallback_template")
@@ -116,7 +130,7 @@ class SupportPipeline:
                 return self._finish(run_id, ticket, out, t0)
             stage = "validation"
             text = render(gen.sentences, self.retriever)
-            by_id = {p.passage_id: p for p in passages}
+            by_id = {p.passage_id: p for p in gen_passages}
             rep = guardrails.check_response(text, gen.sentences, by_id, cls.intent_confidence, dec.threshold, ticket.text)
             out["guardrails"] = rep.as_dict()
             self._log(run_id, ticket, "validation", "block" if rep.blocked else "pass",

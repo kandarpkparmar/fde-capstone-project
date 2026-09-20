@@ -1,0 +1,612 @@
+{
+  "meta": {
+    "run_id": "20260920T074233-1361",
+    "input": "data/validation_tickets.json",
+    "started_utc": "2026-09-20T07:42:42.372463+00:00",
+    "wall_clock_seconds": 0.8,
+    "system_version": "1.0.0",
+    "model": "none",
+    "retrieval_backend": "dense",
+    "chunk_strategy": "section",
+    "confidence_threshold": 0.8,
+    "answerable_threshold": 0.5,
+    "retrieval_min_score": 0.3,
+    "llm_stats": {
+      "calls": 0,
+      "cache_hits": 0,
+      "failures": 0,
+      "short_circuited": 0
+    },
+    "cache_used": true
+  },
+  "volume": {
+    "tickets_processed": 80,
+    "answered_automatically": 61,
+    "escalated": 17,
+    "blocked_by_guardrails": 2,
+    "degraded_llm_fallback": 63,
+    "degraded_retrieval_fallback": 0,
+    "stage_errors": 0
+  },
+  "business": {
+    "first_contact_resolution_pct": 76.25,
+    "escalation_rate_pct": 23.75,
+    "reply_time_seconds_all_tickets": {
+      "mean": 0.0101,
+      "median": 0.0089,
+      "p95": 0.0159,
+      "n": 80
+    },
+    "reply_time_seconds_auto_answers": {
+      "mean": 0.01,
+      "median": 0.009,
+      "p95": 0.0121,
+      "n": 61
+    },
+    "reply_time_note": "First reply = answer or acknowledgement produced by the system. Time a human then takes on escalated tickets is NOT simulated.",
+    "repeat_contacts": "not measurable: needs live customer follow-up data",
+    "first_contact_resolution_verified_pct": 53.75,
+    "fcr_note": "Headline FCR counts an automatic answer as resolved (proxy: no live customer to confirm). 'Verified' counts it only if the reference label also says auto_respond.",
+    "baseline_from_history": {
+      "n": 80,
+      "first_contact_resolution_pct": 46.25,
+      "escalation_rate_pct": 53.75,
+      "resolution_minutes_mean": 441.5,
+      "resolution_minutes_median": 218.0,
+      "csat_mean": 2.6
+    }
+  },
+  "technical": {
+    "latency_seconds": {
+      "mean": 0.0101,
+      "median": 0.0089,
+      "p95": 0.0159
+    },
+    "intent_classification": {
+      "accuracy": 1.0,
+      "precision_weighted": 1.0,
+      "precision_macro": 1.0,
+      "recall_macro": 1.0,
+      "per_class": {
+        "account_access": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "api_key_issue": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "api_usage_question": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "authentication_failure": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "billing_query": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 10
+        },
+        "compliance_request": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "configuration_help": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "data_export": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "data_residency": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "database_issue": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "deployment_failure": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "feature_request": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "integration_help": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "onboarding": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "performance_degradation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "quota_or_overage": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "rate_limit": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "rollback_request": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "security_incident": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "sso_configuration": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "unclear_request": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "webhook_issue": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        }
+      },
+      "n": 80
+    },
+    "confusion_matrix": {
+      "api_key_issue": {
+        "api_key_issue": 6
+      },
+      "unclear_request": {
+        "unclear_request": 6
+      },
+      "authentication_failure": {
+        "authentication_failure": 3
+      },
+      "api_usage_question": {
+        "api_usage_question": 4
+      },
+      "account_access": {
+        "account_access": 4
+      },
+      "compliance_request": {
+        "compliance_request": 1
+      },
+      "billing_query": {
+        "billing_query": 10
+      },
+      "rollback_request": {
+        "rollback_request": 6
+      },
+      "performance_degradation": {
+        "performance_degradation": 3
+      },
+      "feature_request": {
+        "feature_request": 3
+      },
+      "onboarding": {
+        "onboarding": 4
+      },
+      "deployment_failure": {
+        "deployment_failure": 5
+      },
+      "data_residency": {
+        "data_residency": 6
+      },
+      "quota_or_overage": {
+        "quota_or_overage": 2
+      },
+      "webhook_issue": {
+        "webhook_issue": 3
+      },
+      "configuration_help": {
+        "configuration_help": 3
+      },
+      "security_incident": {
+        "security_incident": 4
+      },
+      "data_export": {
+        "data_export": 1
+      },
+      "rate_limit": {
+        "rate_limit": 1
+      },
+      "integration_help": {
+        "integration_help": 3
+      },
+      "sso_configuration": {
+        "sso_configuration": 1
+      },
+      "database_issue": {
+        "database_issue": 1
+      }
+    },
+    "urgency": {
+      "accuracy": 0.4375,
+      "per_class": {
+        "high": {
+          "precision": 0.4286,
+          "recall": 0.36,
+          "support": 25
+        },
+        "low": {
+          "precision": 0.4286,
+          "recall": 0.45,
+          "support": 20
+        },
+        "medium": {
+          "precision": 0.4474,
+          "recall": 0.4857,
+          "support": 35
+        }
+      }
+    },
+    "calibration": {
+      "bands": [
+        {
+          "band": "0.8-1.0",
+          "n": 80,
+          "stated_confidence": 0.9993,
+          "observed_accuracy": 1.0,
+          "gap_points": -0.07
+        }
+      ],
+      "expected_calibration_error_points": 0.07
+    },
+    "retrieval": {
+      "hit_rate_pct": 96.23,
+      "n_answerable_with_docs": 53,
+      "correctly_empty_for_unanswerable_pct": 25.93,
+      "note": "hit = any expected doc among retrieved passages. Unanswerable tickets often still retrieve loosely related passages; routing/generation are the safeguards."
+    },
+    "routing": {
+      "accuracy_pct": 73.75,
+      "auto_answer_precision_pct": 70.49,
+      "wrongly_auto_answered": 18,
+      "missed_automation_pct": 10.42,
+      "note": "Final action vs expected_route label. Includes the labels' irreducible noise (identical tickets carry both labels)."
+    },
+    "citations": {
+      "citations_checked": 61,
+      "resolve_to_retrieved_passages_pct": 100.0,
+      "cite_an_expected_document_pct": 70.49,
+      "answers_with_expected_doc_cited_pct": 70.49
+    },
+    "reference_answers": {
+      "answers_with_reference": 0,
+      "must_mention_coverage_pct": null,
+      "must_not_claim_violations": 0
+    },
+    "hallucination": {
+      "drafts_blocked_for_unsupported_claims": 2,
+      "sent_answers_passing_grounding_check_pct": 100.0,
+      "judge_unsupported_claim_rate_pct": null,
+      "judge_sample_size": 0,
+      "note": "Rate among SENT answers estimated by an LLM judge on a sample; a human review sheet (review_sample.csv) is produced for the required two-assessor check, which this run does not include."
+    }
+  },
+  "governance": {
+    "decisions_logged": 526,
+    "decision_log_reconciliation": {
+      "run_id": "20260920T074233-1361",
+      "tickets_processed": 80,
+      "decisions_logged": 526,
+      "outcome_rows": 80,
+      "distinct_tickets_with_outcome": 80,
+      "by_stage": {
+        "classification": 80,
+        "generation": 63,
+        "ingest": 80,
+        "outcome": 80,
+        "retrieval": 80,
+        "routing": 80,
+        "validation": 63
+      },
+      "reconciles": true
+    },
+    "guardrail_activations_by_type": {
+      "grounding": 2
+    },
+    "private_data_detections_blocked": 0,
+    "private_data_in_outbound_responses": 0,
+    "must_not_auto_respond_violations": 0
+  },
+  "fairness": {
+    "customer_tier": [
+      {
+        "segment": "business",
+        "n": 30,
+        "auto_answer_rate_pct": 90.0,
+        "resolution_rate_pct": 95.24,
+        "citation_accuracy_pct": 74.07,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 0.0,
+        "gap_citation_accuracy_pct": 9.26,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "enterprise",
+        "n": 8,
+        "auto_answer_rate_pct": 75.0,
+        "resolution_rate_pct": 83.33,
+        "citation_accuracy_pct": 83.33,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 11.91,
+        "gap_citation_accuracy_pct": 0.0,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "standard",
+        "n": 42,
+        "auto_answer_rate_pct": 66.67,
+        "resolution_rate_pct": 85.71,
+        "citation_accuracy_pct": 64.29,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 9.53,
+        "gap_citation_accuracy_pct": 19.04,
+        "gap_intent_accuracy_pct": 0.0
+      }
+    ],
+    "customer_region": [
+      {
+        "segment": "asia_pacific",
+        "n": 21,
+        "auto_answer_rate_pct": 71.43,
+        "resolution_rate_pct": 73.33,
+        "citation_accuracy_pct": 80.0,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 26.67,
+        "gap_citation_accuracy_pct": 0.0,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "europe",
+        "n": 25,
+        "auto_answer_rate_pct": 84.0,
+        "resolution_rate_pct": 100.0,
+        "citation_accuracy_pct": 71.43,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 0.0,
+        "gap_citation_accuracy_pct": 8.57,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "latin_america",
+        "n": 7,
+        "auto_answer_rate_pct": 57.14,
+        "resolution_rate_pct": 100.0,
+        "citation_accuracy_pct": 75.0,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 0.0,
+        "gap_citation_accuracy_pct": 5.0,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "north_america",
+        "n": 27,
+        "auto_answer_rate_pct": 77.78,
+        "resolution_rate_pct": 92.86,
+        "citation_accuracy_pct": 61.9,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 7.14,
+        "gap_citation_accuracy_pct": 18.1,
+        "gap_intent_accuracy_pct": 0.0
+      }
+    ],
+    "language_fluency": [
+      {
+        "segment": "fluent",
+        "n": 61,
+        "auto_answer_rate_pct": 75.41,
+        "resolution_rate_pct": 90.0,
+        "citation_accuracy_pct": 78.26,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 0.0,
+        "gap_citation_accuracy_pct": 0.0,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "non_fluent",
+        "n": 19,
+        "auto_answer_rate_pct": 78.95,
+        "resolution_rate_pct": 87.5,
+        "citation_accuracy_pct": 46.67,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 2.5,
+        "gap_citation_accuracy_pct": 31.59,
+        "gap_intent_accuracy_pct": 0.0
+      }
+    ],
+    "channel": [
+      {
+        "segment": "chat",
+        "n": 22,
+        "auto_answer_rate_pct": 68.18,
+        "resolution_rate_pct": 84.62,
+        "citation_accuracy_pct": 66.67,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 15.38,
+        "gap_citation_accuracy_pct": 11.11,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "docs_comment",
+        "n": 16,
+        "auto_answer_rate_pct": 62.5,
+        "resolution_rate_pct": 75.0,
+        "citation_accuracy_pct": 60.0,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 25.0,
+        "gap_citation_accuracy_pct": 17.78,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "email",
+        "n": 31,
+        "auto_answer_rate_pct": 87.1,
+        "resolution_rate_pct": 95.24,
+        "citation_accuracy_pct": 74.07,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 4.76,
+        "gap_citation_accuracy_pct": 3.71,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "forum",
+        "n": 11,
+        "auto_answer_rate_pct": 81.82,
+        "resolution_rate_pct": 100.0,
+        "citation_accuracy_pct": 77.78,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 0.0,
+        "gap_citation_accuracy_pct": 0.0,
+        "gap_intent_accuracy_pct": 0.0
+      }
+    ],
+    "ticket_length": [
+      {
+        "segment": "long (>=100 chars)",
+        "n": 70,
+        "auto_answer_rate_pct": 82.86,
+        "resolution_rate_pct": 91.11,
+        "citation_accuracy_pct": 70.69,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 0.0,
+        "gap_citation_accuracy_pct": 0.0,
+        "gap_intent_accuracy_pct": 0.0
+      },
+      {
+        "segment": "short (<100 chars)",
+        "n": 10,
+        "auto_answer_rate_pct": 30.0,
+        "resolution_rate_pct": 66.67,
+        "citation_accuracy_pct": 66.67,
+        "intent_accuracy_pct": 100.0,
+        "median_latency_s": 0.009,
+        "gap_resolution_rate_pct": 24.44,
+        "gap_citation_accuracy_pct": 4.02,
+        "gap_intent_accuracy_pct": 0.0
+      }
+    ]
+  },
+  "targets_table": [
+    {
+      "measure": "First contact resolution",
+      "baseline": "42%",
+      "target": ">= 60%",
+      "achieved": "76.25%"
+    },
+    {
+      "measure": "Escalation rate",
+      "baseline": "58%",
+      "target": "<= 30%",
+      "achieved": "23.75%"
+    },
+    {
+      "measure": "Mean time to first reply",
+      "baseline": "8-12 h",
+      "target": "< 5 min",
+      "achieved": "0.0101 s"
+    },
+    {
+      "measure": "Median time to first reply",
+      "baseline": "n/a",
+      "target": "n/a",
+      "achieved": "0.0089 s"
+    },
+    {
+      "measure": "Intent classification precision (weighted)",
+      "baseline": "-",
+      "target": ">= 85%",
+      "achieved": "100.0%"
+    },
+    {
+      "measure": "Citation accuracy (resolves to retrieved passage)",
+      "baseline": "-",
+      "target": ">= 95%",
+      "achieved": "100.0%"
+    },
+    {
+      "measure": "Latency p95",
+      "baseline": "-",
+      "target": "< 3 s",
+      "achieved": "0.0159 s"
+    },
+    {
+      "measure": "Private data in outbound responses",
+      "baseline": "-",
+      "target": "0",
+      "achieved": "0"
+    },
+    {
+      "measure": "Decision log reconciles",
+      "baseline": "-",
+      "target": "exact",
+      "achieved": "True"
+    }
+  ]
+}

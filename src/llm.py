@@ -74,7 +74,7 @@ class LLMClient:
                     self._fails = 0
                     log.warning("LLM circuit breaker open for %.0fs", self.cooldown)
 
-    def chat(self, messages: list[dict], json_mode: bool = True, max_tokens: int = 500) -> LLMResult:
+    def chat(self, messages: list[dict], json_mode: bool = True, max_tokens: int = 350) -> LLMResult:
         if not self.enabled:
             return LLMResult(False, error="llm_disabled", model=self.model)
         if not self.api_key:

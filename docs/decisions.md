@@ -1,0 +1,16 @@
+# Design decisions
+
+| ID | Decision | Evidence | Alternatives rejected |
+|---|---|---|---|
+| D-01 | Build triage + retrieval + escalation-with-context, not a chatbot | 71% of tickets answerable from 29 existing articles; 49% of historical escalations were answerable (docs/data_findings.json); Sofia: "I cannot find things in it"; Ines: keyword search fails; Daniel: escalations arrive with no summary | Free-form chatbot |
+| D-02 | Section-based chunking (one chunk per `##` heading, title-prefixed) | evaluation/chunking_experiment: MRR 0.929 (section) vs 0.917 (whole) / 0.918 (800) / 0.919 (400) / 0.911 (250); hit@4 tied ~96% | Fixed windows; whole articles |
+| D-03 | Confidence threshold 0.80, answerability threshold 0.50, retrieval floor 0.30 | evaluation/tune_thresholds.py (out-of-fold, grouped by text): answerability gate barely improves auto-answer precision (flat ~0.75 across thresholds) because ~20% of doc-covered tickets carry unpredictable `answerable=False` labels. Cost model (wrong auto-answer = 3x value of a right one) is break-even at that precision, so a strict answerability gate would cut automation to 19% for no measurable safety gain. 0.50 removes the intents with the lowest per-intent answerable rate; hard safety comes from the must-escalate policy (0 violations) and guardrails. | Precision floor of 0.90 (infeasible from text); 0.90 answerability gate |
+| D-04 | Calibration temperature capped at 0.5 | NLL-optimal value hits the search boundary (0.2) because out-of-fold intent accuracy is 100% on templated text; capped so out-of-distribution text is not over-confident | Uncapped temperature |
+| D-05 | Model never decides routing | Determinism (A5), auditability for the autumn compliance review (Marcus) | LLM routing |
+| D-06 | Must-escalate intents: security_incident, compliance_request, feature_request, unclear_request | `must_not_auto_respond` labels; Daniel (security, billing disputes, data location), Ines (features, roadmap, novel incidents), Sofia (security always escalated) | - |
+| D-07 | Generation receives only the top article's passages (plus any within 10% of its score) | Run 1 cited an expected document in only 59% of citations because loosely related articles were in the prompt; also cuts tokens | Top-k passages from any article |
+| D-08 | Grounding judged against the whole cited article; overlap ratio skipped for sentences under 5 content words | Run 1 produced false blocks on short sentences ("Revoke the exposed key immediately.") and on model text containing document ids. **Made after seeing validation output**; disclosed in the report. No threshold was tuned to a metric target. | Keep per-passage strictness |
+| D-09 | Extractive template fallback when the model is unavailable | A11; run with the model disabled still processes all 80 tickets in ~1 s | Crash / retry forever |
+| D-10 | LangGraph not used | Linear flow, one branch | Brief's suggested stack |
+| D-11 | Automation disclosed in every reply | Ravi Menon | - |
+| D-12 | Free-tier-priced small model (Llama-3.1-8B), caching, generation only for tickets that route to auto | Cost: ~60 model calls for a full validation run | Larger model; model-based classification |

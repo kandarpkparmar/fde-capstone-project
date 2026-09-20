@@ -1,0 +1,463 @@
+ticket_id,customer_message,system_response,cited_passages,assessor1_unsupported_claim(y/n),assessor2_unsupported_claim(y/n),notes
+VAL-0018,Our cursor seems to stop working partway through a long iteration. Is there an expiry we should be handling?,"Hello,
+
+Cursors expire after one hour. [DOC-API-002] Long-running iterations should handle expiry by restarting from a recorded checkpoint. [DOC-API-002] Pass the next_cursor value from each response as the cursor parameter of the following request, and stop when it is null. [DOC-API-002] Keep page size at or below two hundred. [DOC-API-002] Use cursor pagination for anything that may change while you iterate. [DOC-API-002] Offset pagination will skip or repeat records when items are inserted mid-iteration. [DOC-API-002]
+
+Sources:
+- DOC-API-002: Pagination and handling large result sets (Notes)
+- DOC-API-002: Pagination and handling large result sets (Resolution)
+- DOC-API-002: Pagination and handling large result sets (Symptoms)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-002::notes|DOC-API-002::resolution|DOC-API-002::symptoms,,,
+VAL-0025,every deployment fails at health check stage. i am having increase timeout twice already and it makes no difference. kindly check and revert.,"Hello,
+
+Confirm the container is listening on the port declared in the service definition. [DOC-DEPLOY-001] Increase the initial delay if the application needs time to warm up before it can answer. [DOC-DEPLOY-001] Compare the environment variables present in the deployment against those the application requires. [DOC-DEPLOY-001] Inspect the container logs from the failed revision rather than the running one. [DOC-DEPLOY-001]
+
+Sources:
+- DOC-DEPLOY-001: Container deployments failing during the health check phase (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-001::resolution,,,
+VAL-0021,We shipped a release earlier today that has broken checkout for a portion of our customers. We need to get back to the previous version quickly. What is the fastest safe route?,"Hello,
+
+To roll back to the previous version, open the revisions page for the service and identify the last revision that was healthy. [DOC-DEPLOY-002] Select roll back on that revision to restore the container image and its configuration together. [DOC-DEPLOY-002] If the release included a database migration, roll the migration back before the service. [DOC-DEPLOY-002] Traffic moves within roughly thirty seconds and no rebuild takes place after rolling back. [DOC-DEPLOY-002] Record the incident and the reason for the rollback before deploying a fix. [DOC-DEPLOY-002] A release has introduced errors and must be reverted when the previous revision is needed while a fix is prepared. [DOC-DEPLOY-002]
+
+Sources:
+- DOC-DEPLOY-002: Rolling back a failed release (Resolution)
+- DOC-DEPLOY-002: Rolling back a failed release (Symptoms)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-002::resolution|DOC-DEPLOY-002::symptoms,,,
+VAL-0063,One of our developers cannot see a project she should have access to. I have granted her the role twice and it does not seem to take effect.,"Hello,
+
+Check the effective permissions view for the user, which resolves direct roles and group memberships together. [DOC-ACCT-001] Confirm the invitation was accepted. Pending invitations appear in a separate section and expire after seven days. [DOC-ACCT-001] Prefer group membership to direct role assignment, so that access can be reviewed in one place. [DOC-ACCT-001] Removing the last account owner is not permitted. Transfer ownership before removing the account. [DOC-ACCT-001]
+
+Sources:
+- DOC-ACCT-001: Managing team members, roles and permissions (Resolution)
+- DOC-ACCT-001: Managing team members, roles and permissions (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-ACCT-001::notes|DOC-ACCT-001::resolution,,,
+VAL-0047,Are the search endpoints limited differently from the rest? Our read traffic is fine but search is being rejected constantly.,"Hello,
+
+Search and export endpoints are more expensive and are limited more tightly than reads. [DOC-API-001] Implement exponential backoff with jitter on 429 responses rather than retrying immediately. [DOC-API-001] The limit applies per organisation rather than per key. [DOC-API-001] The endpoint being called has a lower limit than the general one. [DOC-API-001] Read the rate limit headers returned with every response. [DOC-API-001] Confirm whether the endpoint has a specific limit. [DOC-API-001]
+
+Sources:
+- DOC-API-001: Understanding API rate limits and quota tiers (Resolution)
+- DOC-API-001: Understanding API rate limits and quota tiers (Common causes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-001::common-causes|DOC-API-001::resolution,,,
+VAL-0037,Are backups replicated outside our primary region? A compliance review has raised this and I need a definite answer.,"Hello,
+
+Backups are replicated outside the primary region by default. [DOC-DATA-003] This is because cross-region replication is enabled by default. [DOC-DATA-003] Check the backup replication setting if a single-region requirement applies. [DOC-DATA-003] Review the backup replication setting for a definite answer. [DOC-DATA-003] This setting can be found in the organisation settings page. [DOC-DATA-003] The organisation settings page shows the region where primary data is stored. [DOC-DATA-003]
+
+Sources:
+- DOC-DATA-003: Data residency and regional storage (Common causes)
+- DOC-DATA-003: Data residency and regional storage (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DATA-003::common-causes|DOC-DATA-003::resolution,,,
+VAL-0033,"Signature verification fails for every delivery. We are computing the signature exactly as the documentation describes, over the parsed body.","Hello,
+
+Compute the signature over the raw request body before any parsing. [DOC-API-003] Re-serialising JSON changes the bytes and invalidates the signature. [DOC-API-003] At-least-once delivery means duplicates are expected rather than exceptional. [DOC-API-003]
+
+Sources:
+- DOC-API-003: Webhook delivery, retries and signature verification (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-003::resolution,,,
+VAL-0069,Our staging environment is picking up production configuration values. I cannot work out where the override is coming from.,"Hello,
+
+Check the scope at which the variable was defined. [DOC-DEPLOY-004] Service scope overrides project scope, and project scope overrides organisation defaults. [DOC-DEPLOY-004] Review the environment overrides page, which lists values that differ from the defaults for each environment. [DOC-DEPLOY-004] Redeploy after changing configuration. [DOC-DEPLOY-004] An environment override exists that is not visible on the main settings page [DOC-DEPLOY-004] Configuration differs between environments unexpectedly [DOC-DEPLOY-004]
+
+Sources:
+- DOC-DEPLOY-004: Configuring environment variables and secrets (Resolution)
+- DOC-DEPLOY-004: Configuring environment variables and secrets (Common causes)
+- DOC-DEPLOY-004: Configuring environment variables and secrets (Symptoms)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-004::common-causes|DOC-DEPLOY-004::resolution|DOC-DEPLOY-004::symptoms,,,
+VAL-0028,builds that work last week are now fail during dependency resolution. we having not change our code at all.,"Hello,
+
+Builds that previously succeeded now fail without code changes [DOC-DEPLOY-003] Pin your dependencies with exact versions and commit the lock file [DOC-DEPLOY-003] Compare the runtime version declared in your build configuration against the version you use locally [DOC-DEPLOY-003] Clear the build cache from the settings page and trigger a fresh build to rule out a corrupted artefact [DOC-DEPLOY-003] Check whether the dependency registry is reachable from the build network if a specific dependency is failing to resolve [DOC-DEPLOY-003] Build logs retain the full resolution output for thirty days [DOC-DEPLOY-003]
+
+Sources:
+- DOC-DEPLOY-003: Build failures caused by dependency resolution (Symptoms)
+- DOC-DEPLOY-003: Build failures caused by dependency resolution (Resolution)
+- DOC-DEPLOY-003: Build failures caused by dependency resolution (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-003::notes|DOC-DEPLOY-003::resolution|DOC-DEPLOY-003::symptoms,,,
+VAL-0001,One of our production keys started returning 401 at around yesterday morning without any change on our side. Other keys against the same account are still working.,"Hello,
+
+If a key has been exposed publicly, revoke it immediately rather than waiting for the rotation window. [DOC-AUTH-004] To rotate without downtime, create the replacement key first, deploy it, confirm traffic has moved, then revoke the old key. [DOC-AUTH-004] Review the scopes attached to the key. Read-only keys cannot write, and project-scoped keys cannot reach organisation endpoints. [DOC-AUTH-004] Check the API keys page for the key's status and expiry. Revoked and expired keys are listed with the date and the user who acted. [DOC-AUTH-004] A previously working key returns 401 Unauthorized [DOC-AUTH-004] A key needs replacing after accidental exposure [DOC-AUTH-004]
+
+Sources:
+- DOC-AUTH-004: API key rotation and scope management (Notes)
+- DOC-AUTH-004: API key rotation and scope management (Resolution)
+- DOC-AUTH-004: API key rotation and scope management (Symptoms)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-AUTH-004::notes|DOC-AUTH-004::resolution|DOC-AUTH-004::symptoms,,,
+VAL-0080,Builds that worked last week are now failing during dependency resolution. We have not changed our code at all. This is blocking a release we had planned for yesterday morning.,"Hello,
+
+Builds that previously succeeded now fail without code changes [DOC-DEPLOY-003] Pin your dependencies with exact versions and commit the lock file [DOC-DEPLOY-003] Compare the runtime version declared in your build configuration against the version you use locally [DOC-DEPLOY-003] Clear the build cache from the settings page and trigger a fresh build to rule out a corrupted artefact [DOC-DEPLOY-003] If a specific dependency is failing to resolve, check whether its registry is reachable from the build network [DOC-DEPLOY-003]
+
+Sources:
+- DOC-DEPLOY-003: Build failures caused by dependency resolution (Symptoms)
+- DOC-DEPLOY-003: Build failures caused by dependency resolution (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-003::resolution|DOC-DEPLOY-003::symptoms,,,
+VAL-0045,I started an export over the weekend and it is still showing as queued. It covers about two million records. Should I cancel and try again?,"Hello,
+
+Jobs covering more than a million records commonly take several minutes. [DOC-DATA-001] Request a fresh link from the exports page if the original has expired. [DOC-DATA-001] The export reflects the moment the job began, so records created during processing are not included. [DOC-DATA-001] For recurring needs, configure a scheduled export delivered to object storage rather than generating them manually. [DOC-DATA-001] Large exports are queued and processed asynchronously. [DOC-DATA-001] Download links are valid for twenty-four hours. [DOC-DATA-001]
+
+Sources:
+- DOC-DATA-001: Exporting account data and scheduled extracts (Resolution)
+- DOC-DATA-001: Exporting account data and scheduled extracts (Common causes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DATA-001::common-causes|DOC-DATA-001::resolution,,,
+VAL-0057,Our deployment reaches running and then rolls back after about a minute. The logs mention a health check timeout. It runs perfectly on my machine and in staging.,"Hello,
+
+Confirm the container is listening on the port declared in the service definition. [DOC-DEPLOY-001] Increase the initial delay if the application needs time to warm up before it can answer. [DOC-DEPLOY-001] Compare the environment variables present in the deployment against those the application requires. [DOC-DEPLOY-001] Inspect the container logs from the failed revision rather than the running one. [DOC-DEPLOY-001] A health check must return within the timeout using only local state. [DOC-DEPLOY-001] Endpoints that call a database will fail during a database incident and take the service down with them. [DOC-DEPLOY-001]
+
+Sources:
+- DOC-DEPLOY-001: Container deployments failing during the health check phase (Resolution)
+- DOC-DEPLOY-001: Container deployments failing during the health check phase (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-001::notes|DOC-DEPLOY-001::resolution,,,
+VAL-0014,we shipped a release around 14:00 yesterday that has broken checkout for portion of our customers. We need to get back to the previous version quickly. waiting for your reply.,"Hello,
+
+To roll back the failed release, open the revisions page for the service and identify the last revision that was healthy. [DOC-DEPLOY-002] Select roll back on that revision. Traffic moves within roughly thirty seconds and no rebuild takes place. [DOC-DEPLOY-002]
+
+Sources:
+- DOC-DEPLOY-002: Rolling back a failed release (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-002::resolution,,,
+VAL-0044,There are charges on our invoice for a service I do not believe we use. Could you explain what these relate to?,"Hello,
+
+Charges appear for a service that is not in use is a common symptom. [DOC-BILL-001] Common causes include usage-based charges accrued beyond the plan allowance, a resource was left running in a non-production environment, or the billing period runs from the subscription date rather than the first of the month. [DOC-BILL-001] To resolve the issue, open the usage breakdown for the period, which itemises charges by service and by environment. [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Symptoms)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::resolution|DOC-BILL-001::symptoms,,,
+VAL-0019,my team member not able to open project. i give permission already two time. still not working.,"Hello,
+
+Remove a departing user rather than only changing their password, and revoke any API keys they created. [DOC-ACCT-001]
+
+Sources:
+- DOC-ACCT-001: Managing team members, roles and permissions (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-ACCT-001::resolution,,,
+VAL-0071,We were throttled over the weekend after a traffic increase and it took down part of our product. We would rather pay overage than be stopped. How do we change that?,"Hello,
+
+Production workloads generally need overage, which continues at the listed rate. [DOC-BILL-003] Configure overage rather than a hard spend cap to avoid service stoppage. [DOC-BILL-003] An account owner can raise the spend cap immediately from the billing page. [DOC-BILL-003] Spend caps apply per organisation and cannot currently be set per project. [DOC-BILL-003] Check the billing page to configure overage or a spend cap. [DOC-BILL-003] Decide deliberately between a hard spend cap and overage on the billing page. [DOC-BILL-003]
+
+Sources:
+- DOC-BILL-003: Usage limits, overage and spend controls (Resolution)
+- DOC-BILL-003: Usage limits, overage and spend controls (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-003::notes|DOC-BILL-003::resolution,,,
+VAL-0034,How do I revert to an earlier revision? The release we put out this morning is causing errors and I would rather roll back than try to fix forward.,"Hello,
+
+Open the revisions page for the service and identify the last revision that was healthy. [DOC-DEPLOY-002] Select roll back on that revision. Traffic moves within roughly thirty seconds and no rebuild takes place. [DOC-DEPLOY-002] If the release included a database migration, roll the migration back before the service, or the older code will encounter a schema it does not expect. [DOC-DEPLOY-002]
+
+Sources:
+- DOC-DEPLOY-002: Rolling back a failed release (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-002::resolution,,,
+VAL-0076,We need our data to remain within the EU for a contract we are signing. Our organisation was created some time ago and I am not sure which region it is in.,"Hello,
+
+Check the region shown on the organisation settings page to determine where primary data is stored. [DOC-DATA-003] Metadata such as account names and billing records is stored centrally regardless of the data region. [DOC-DATA-003] Migrating an organisation between regions requires a planned migration with support and involves a maintenance window. [DOC-DATA-003] Enable read replicas in additional regions to reduce latency for distant users without moving primary storage. [DOC-DATA-003] Review the backup replication setting if a single-region requirement applies, since cross-region replication is enabled by default. [DOC-DATA-003]
+
+Sources:
+- DOC-DATA-003: Data residency and regional storage (Resolution)
+- DOC-DATA-003: Data residency and regional storage (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DATA-003::notes|DOC-DATA-003::resolution,,,
+VAL-0073,bill is very high this month. i not understand the charge. please explain what is this.,"Hello,
+
+Charges appear for a service that is not in use [DOC-BILL-001] The billing period runs from the subscription date rather than the first of the month [DOC-BILL-001] Open the usage breakdown for the period, which itemises charges by service and by environment [DOC-BILL-001] Look for resources in staging or development environments, which are billed at the same rate as production [DOC-BILL-001] Check the billing period dates at the top of the invoice [DOC-BILL-001] Set a usage alert on the billing page so that unexpected accrual is noticed during the period rather than at the end of it [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::resolution,,,
+VAL-0060,"Signature verification fails for every delivery. We are computing the signature exactly as the documentation describes, over the parsed body.","Hello,
+
+Signature verification fails because the signature was computed over a parsed body rather than the raw bytes. [DOC-API-003] Compute the signature over the raw request body before any parsing. [DOC-API-003] Failed deliveries are retried with backoff for twenty-four hours, after which the endpoint is disabled and the account is notified. [DOC-API-003] Deliveries time out after five seconds. [DOC-API-003] Make your handler idempotent using the event identifier. [DOC-API-003] Check the webhook delivery log, which records every attempt with the response status and body for the last seven days. [DOC-API-003]
+
+Sources:
+- DOC-API-003: Webhook delivery, retries and signature verification (Common causes)
+- DOC-API-003: Webhook delivery, retries and signature verification (Resolution)
+- DOC-API-003: Webhook delivery, retries and signature verification (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-003::common-causes|DOC-API-003::notes|DOC-API-003::resolution,,,
+VAL-0027,Overage charges appeared on our invoice that we were not expecting. We thought we were well inside our allowance.,"Hello,
+
+Overage charges appeared unexpectedly. [DOC-BILL-003] Check the current period usage against the plan allowance on the billing page. [DOC-BILL-003] Decide deliberately between a hard spend cap, which stops the service, and overage, which continues at the listed rate. [DOC-BILL-003]
+
+Sources:
+- DOC-BILL-003: Usage limits, overage and spend controls (Symptoms)
+- DOC-BILL-003: Usage limits, overage and spend controls (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-003::resolution|DOC-BILL-003::symptoms,,,
+VAL-0065,There are charges on our invoice for a service I do not believe we use. Could you explain what these relate to?,"Hello,
+
+Charges appear for a service that is not in use [DOC-BILL-001] The billing period runs from the anniversary of the subscription date [DOC-BILL-001] Check the billing period dates at the top of the invoice [DOC-BILL-001] The period runs from the anniversary of the subscription date [DOC-BILL-001] Look for resources in staging or development environments, which are billed at the same rate as production [DOC-BILL-001] Set a usage alert on the billing page so that unexpected accrual is noticed during the period rather than at the end of it [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Symptoms)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::resolution|DOC-BILL-001::symptoms,,,
+VAL-0042,Our staging environment is picking up production configuration values. I cannot work out where the override is coming from.,"Hello,
+
+Check the scope at which the variable was defined. [DOC-DEPLOY-004] Service scope overrides project scope, and project scope overrides organisation defaults. [DOC-DEPLOY-004] Review the environment overrides page, which lists values that differ from the defaults for each environment. [DOC-DEPLOY-004] Redeploy after changing configuration. [DOC-DEPLOY-004] An environment override exists that is not visible on the main settings page [DOC-DEPLOY-004] Configuration differs between environments unexpectedly [DOC-DEPLOY-004]
+
+Sources:
+- DOC-DEPLOY-004: Configuring environment variables and secrets (Resolution)
+- DOC-DEPLOY-004: Configuring environment variables and secrets (Common causes)
+- DOC-DEPLOY-004: Configuring environment variables and secrets (Symptoms)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-004::common-causes|DOC-DEPLOY-004::resolution|DOC-DEPLOY-004::symptoms,,,
+VAL-0041,There are charges on our invoice for a service I do not believe we use. Could you explain what these relate to?,"Hello,
+
+Charges for a service not in use may be due to usage-based charges accrued beyond the plan allowance or a resource left running in a non-production environment. [DOC-BILL-001] Check the usage breakdown for the period to identify resources in staging or development environments, which are billed at the same rate as production. [DOC-BILL-001] The billing period runs from the anniversary of the subscription date, not the first of the month. [DOC-BILL-001] Set a usage alert on the billing page to notice unexpected accrual during the period rather than at the end of it. [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::resolution,,,
+VAL-0064,What is the right way to pull a very large extract? Requesting a big page size gets rejected and iterating page by page takes hours.,"Hello,
+
+Use cursor pagination for large result sets. [DOC-API-002] Pass the next_cursor value from each response as the cursor parameter of the following request. [DOC-API-002] Keep page size at or below two hundred. [DOC-API-002] For very large extracts, use the export endpoint, which runs asynchronously and returns a download link. [DOC-API-002] Larger requests are rejected rather than truncated. [DOC-API-002] Stop iterating when the next_cursor value is null. [DOC-API-002]
+
+Sources:
+- DOC-API-002: Pagination and handling large result sets (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-002::resolution,,,
+VAL-0079,one of our customers has asked for written confirmation of where their data is physically stored. Can you please point me to something I can share with them? kindly check and revert.,"Hello,
+
+You can check the region shown on the organisation settings page to see where primary data is stored. [DOC-DATA-003] This region is fixed at creation and determines where primary data is stored. [DOC-DATA-003] Metadata such as account names and billing records is stored centrally regardless of the data region. [DOC-DATA-003] To confirm where data is physically stored, you can refer to the organisation settings page. [DOC-DATA-003] Data residency and regional storage is determined at organisation creation. [DOC-DATA-003] The region shown on the organisation settings page determines where primary data is stored. [DOC-DATA-003]
+
+Sources:
+- DOC-DATA-003: Data residency and regional storage (Resolution)
+- DOC-DATA-003: Data residency and regional storage (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DATA-003::notes|DOC-DATA-003::resolution,,,
+VAL-0058,one of our production keys start returning 401 at around last Friday without any change on our side. Other keys against same account still working. waiting for your reply.,"Hello,
+
+A previously working key returns 401 Unauthorized [DOC-AUTH-004] If a key has been exposed publicly, revoke it immediately rather than waiting for the rotation window. [DOC-AUTH-004] To rotate without downtime, create the replacement key first, deploy it, confirm traffic has moved, then revoke the old key. [DOC-AUTH-004]
+
+Sources:
+- DOC-AUTH-004: API key rotation and scope management (Symptoms)
+- DOC-AUTH-004: API key rotation and scope management (Common causes)
+- DOC-AUTH-004: API key rotation and scope management (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-AUTH-004::common-causes|DOC-AUTH-004::resolution|DOC-AUTH-004::symptoms,,,
+VAL-0054,One of our customers has asked for written confirmation of where their data is physically stored. Could you point me to something I can share with them?,"Hello,
+
+Data is stored in the region shown on the organisation settings page, which is fixed at creation. [DOC-DATA-003] To reduce latency for distant users, enable read replicas in additional regions without moving primary storage. [DOC-DATA-003] Review the backup replication setting if a single-region requirement applies, since cross-region replication is enabled by default. [DOC-DATA-003] To confirm where data is held, check the organisation settings page. [DOC-DATA-003]
+
+Sources:
+- DOC-DATA-003: Data residency and regional storage (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DATA-003::resolution,,,
+VAL-0026,we need our data to remain within EU for contract we are signing. Our organisation created some time ago and i not sure which region it is in. please do the needful.,"Hello,
+
+Check the region shown on the organisation settings page to determine where primary data is stored. [DOC-DATA-003] Enabling read replicas in additional regions can reduce latency for distant users without moving primary storage. [DOC-DATA-003] Cross-region replication is enabled by default for backup replication setting, if a single-region requirement applies. [DOC-DATA-003] Migrating an organisation between regions requires a planned migration with support and involves a maintenance window. [DOC-DATA-003]
+
+Sources:
+- DOC-DATA-003: Data residency and regional storage (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DATA-003::resolution,,,
+VAL-0004,my authenticator app codes are being rejected every time. i am having tried generating new ones several times.,"Hello,
+
+Check that automatic time synchronisation is enabled on the device generating the code. [DOC-AUTH-002] If the device is lost, sign in with one of your recovery codes and then re-enrol a new device from the security page. [DOC-AUTH-002] If no recovery codes are available, an account administrator can reset multi-factor authentication for that user from the team members page. [DOC-AUTH-002] If you are the sole administrator and have no recovery codes, identity verification through support is required and takes up to one business day. [DOC-AUTH-002]
+
+Sources:
+- DOC-AUTH-002: Multi-factor authentication setup and recovery (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-AUTH-002::resolution,,,
+VAL-0055,we connecting our CI pipeline and not are sure whether to use personal key or something else. What is recommended approach for automation? please tell what to do.,"Hello,
+
+Create a service account for the pipeline rather than using a personal key. [DOC-INT-001] Store the credential as an encrypted secret in your pipeline provider, never in the repository. [DOC-INT-001] Test the pipeline credential separately from the deployment logic. [DOC-INT-001] Grant the service account only the projects and permissions the pipeline needs. [DOC-INT-001] Review the grant when the pipeline changes. [DOC-INT-001] Set an expiry for the service account key and rotate on a schedule. [DOC-INT-001]
+
+Sources:
+- DOC-INT-001: Connecting continuous integration pipelines (Resolution)
+- DOC-INT-001: Connecting continuous integration pipelines (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-INT-001::notes|DOC-INT-001::resolution,,,
+VAL-0072,There are charges on our invoice for a service I do not believe we use. Could you explain what these relate to?,"Hello,
+
+Charges appear for a service that is not in use [DOC-BILL-001] Check the billing period dates at the top of the invoice [DOC-BILL-001] Look for resources in staging or development environments [DOC-BILL-001] The billing period runs from the subscription date rather than the first of the month [DOC-BILL-001] Usage-based charges accrued beyond the plan allowance [DOC-BILL-001] Invoices are finalised three days after the period ends [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Symptoms)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::notes|DOC-BILL-001::resolution|DOC-BILL-001::symptoms,,,
+VAL-0077,"Our billing period does not seem to match the calendar month, which is making reconciliation difficult. Is that expected?","Hello,
+
+The billing period runs from the anniversary of the subscription date. [DOC-BILL-001] Check the billing period dates at the top of the invoice. [DOC-BILL-001] Invoices are finalised three days after the period ends. [DOC-BILL-001] Adjustments requested before finalisation appear on the same invoice. [DOC-BILL-001] The billing period does not align with the calendar month. [DOC-BILL-001] The billing period runs from the subscription date rather than the first of the month. [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Notes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Symptoms)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::notes|DOC-BILL-001::resolution|DOC-BILL-001::symptoms,,,
+VAL-0053,There are charges on our invoice for a service I do not believe we use. Could you explain what these relate to?,"Hello,
+
+Charges appear for a service that is not in use is a common symptom. [DOC-BILL-001] Common causes include usage-based charges accrued beyond the plan allowance, a resource was left running in a non-production environment, or the billing period runs from the subscription date rather than the first of the month. [DOC-BILL-001] To resolve the issue, open the usage breakdown for the period, which itemises charges by service and by environment. [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Symptoms)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::resolution|DOC-BILL-001::symptoms,,,
+VAL-0023,We have just signed up and I am not sure where to start. We have a containerised application and would like to get it deployed.,"Hello,
+
+To get started, create a project and a service within it. [DOC-ONB-001] Connect a repository or push a container image to the service. [DOC-ONB-001] Set environment variables the application needs before the first deployment. [DOC-ONB-001] Deploy the application and watch the logs for the first sixty seconds. [DOC-ONB-001]
+
+Sources:
+- DOC-ONB-001: First deployment: a walkthrough (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-ONB-001::resolution,,,
+VAL-0013,There are charges on our invoice for a service I do not believe we use. Could you explain what these relate to?,"Hello,
+
+Charges appear for a service that is not in use is a common symptom. [DOC-BILL-001] A resource was left running in a non-production environment is a common cause. [DOC-BILL-001] Open the usage breakdown for the period to check for resources in staging or development environments. [DOC-BILL-001] Check the billing period dates at the top of the invoice. [DOC-BILL-001] Invoices are finalised three days after the period ends. [DOC-BILL-001] Adjustments requested before finalisation appear on the same invoice. [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Symptoms)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::notes|DOC-BILL-001::resolution|DOC-BILL-001::symptoms,,,
+VAL-0051,log forwarding to our external system stop two days ago and not resumed by itself. destination is healthy as we know. kindly check and revert.,"Hello,
+
+Logs are not arriving at the external destination [DOC-INT-002] Expect a delay of up to two minutes on metrics, since they are aggregated before being sent [DOC-INT-002] Apply a level filter at source so that debug output is not forwarded, which is usually the reason volume is higher than expected [DOC-INT-002] Verify the destination credential separately if delivery has stopped entirely, as expired credentials are the most common cause [DOC-INT-002] Forwarding pauses after one hour of consecutive failures and must be resumed manually once the destination is healthy [DOC-INT-002] The destination rejected the payload and forwarding paused [DOC-INT-002]
+
+Sources:
+- DOC-INT-002: Third party monitoring and log forwarding (Symptoms)
+- DOC-INT-002: Third party monitoring and log forwarding (Resolution)
+- DOC-INT-002: Third party monitoring and log forwarding (Notes)
+- DOC-INT-002: Third party monitoring and log forwarding (Common causes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-INT-002::common-causes|DOC-INT-002::notes|DOC-INT-002::resolution|DOC-INT-002::symptoms,,,
+VAL-0066,one of our customers has asked for written confirmation of where their data is physically stored. Can you please point me to something I can share with them? sorry for my english.,"Hello,
+
+You can check the region shown on the organisation settings page to see where primary data is stored. [DOC-DATA-003] Primary data is stored in the region where the organisation was created. [DOC-DATA-003] Metadata such as account names and billing records is stored centrally regardless of the data region. [DOC-DATA-003] Backups are replicated to a second region by default. [DOC-DATA-003] To reduce latency for distant users, enable read replicas in additional regions. [DOC-DATA-003] If a single-region requirement applies, review the backup replication setting. [DOC-DATA-003]
+
+Sources:
+- DOC-DATA-003: Data residency and regional storage (Resolution)
+- DOC-DATA-003: Data residency and regional storage (Notes)
+- DOC-DATA-003: Data residency and regional storage (Common causes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DATA-003::common-causes|DOC-DATA-003::notes|DOC-DATA-003::resolution,,,
+VAL-0061,"Signature verification fails for every delivery. We are computing the signature exactly as the documentation describes, over the parsed body.","Hello,
+
+Signature verification fails because the signature was computed over a parsed body rather than the raw bytes. [DOC-API-003] Compute the signature over the raw request body before any parsing. [DOC-API-003] Failed deliveries are retried with backoff for twenty-four hours, after which the endpoint is disabled and the account is notified. [DOC-API-003] Deliveries time out after five seconds. [DOC-API-003] Make your handler idempotent using the event identifier. [DOC-API-003] Check the webhook delivery log, which records every attempt with the response status and body for the last seven days. [DOC-API-003]
+
+Sources:
+- DOC-API-003: Webhook delivery, retries and signature verification (Common causes)
+- DOC-API-003: Webhook delivery, retries and signature verification (Resolution)
+- DOC-API-003: Webhook delivery, retries and signature verification (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-003::common-causes|DOC-API-003::notes|DOC-API-003::resolution,,,
+VAL-0050,We have just signed up and I am not sure where to start. We have a containerised application and would like to get it deployed.,"Hello,
+
+Create a project, then a service within it. [DOC-ONB-001] Connect a repository or push a container image. [DOC-ONB-001] Set any environment variables the application needs before the first deployment. [DOC-ONB-001] Deploy, then watch the logs for the first sixty seconds. [DOC-ONB-001] The free tier includes one service and is sufficient for evaluating the platform. [DOC-ONB-001] Most first-deployment problems are visible immediately in startup output. [DOC-ONB-001]
+
+Sources:
+- DOC-ONB-001: First deployment: a walkthrough (Resolution)
+- DOC-ONB-001: First deployment: a walkthrough (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-ONB-001::notes|DOC-ONB-001::resolution,,,
+VAL-0062,log forwarding to our external system stop over weekend and not resumed by itself. destination healthy as we know.,"Hello,
+
+Forwarding pauses after one hour of consecutive failures and must be resumed manually once the destination is healthy. [DOC-INT-002] Verify the destination credential separately if delivery has stopped entirely, as expired credentials are the most common cause. [DOC-INT-002] Check the forwarding status page, which shows the last successful delivery and any error returned by the destination. [DOC-INT-002] Apply a level filter at source so that debug output is not forwarded, which is usually the reason volume is higher than expected. [DOC-INT-002] Logs are not arriving at the external destination [DOC-INT-002] Forwarded volume is higher than expected [DOC-INT-002]
+
+Sources:
+- DOC-INT-002: Third party monitoring and log forwarding (Notes)
+- DOC-INT-002: Third party monitoring and log forwarding (Resolution)
+- DOC-INT-002: Third party monitoring and log forwarding (Symptoms)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-INT-002::notes|DOC-INT-002::resolution|DOC-INT-002::symptoms,,,
+VAL-0024,A key can read fine but every write returns a permission error. I created it myself and I thought I gave it full access.,"Hello,
+
+Review the scopes attached to the key. Read-only keys cannot write, and project-scoped keys cannot reach organisation endpoints. [DOC-AUTH-004] Check the API keys page for the key's status and expiry. Revoked and expired keys are listed with the date and the user who acted. [DOC-AUTH-004] The key was issued with a scope that excludes the endpoint being called [DOC-AUTH-004] Limits are enforced per organisation. Issuing more keys does not increase the available quota. [DOC-API-001] Keys issued to individual users are removed when that user is deleted. Use service accounts for anything running in production. [DOC-AUTH-004] To rotate without downtime, create the replacement key first, deploy it, confirm traffic has moved, then revoke the old key. [DOC-AUTH-004]
+
+Sources:
+- DOC-AUTH-004: API key rotation and scope management (Resolution)
+- DOC-AUTH-004: API key rotation and scope management (Common causes)
+- DOC-API-001: Understanding API rate limits and quota tiers (Notes)
+- DOC-AUTH-004: API key rotation and scope management (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-001::notes|DOC-AUTH-004::common-causes|DOC-AUTH-004::notes|DOC-AUTH-004::resolution,,,
+VAL-0074,We are tightening permissions after a review and I want to understand how group membership interacts with directly assigned roles.,"Hello,
+
+Effective permissions view resolves direct roles and group memberships together. [DOC-ACCT-001] Prefer group membership to direct role assignment for access review. [DOC-ACCT-001] Group membership grants broader access than the direct role suggests. [DOC-ACCT-001] Remove a departing user rather than only changing their password. [DOC-ACCT-001]
+
+Sources:
+- DOC-ACCT-001: Managing team members, roles and permissions (Resolution)
+- DOC-ACCT-001: Managing team members, roles and permissions (Common causes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-ACCT-001::common-causes|DOC-ACCT-001::resolution,,,
+VAL-0039,One of our engineers pushed a key to a public repository by mistake. We need to replace it without taking the service down. What is the correct order of operations?,"Hello,
+
+Check the API keys page for the key's status and expiry. [DOC-AUTH-004] Review the scopes attached to the key. [DOC-AUTH-004] Create the replacement key first, deploy it, confirm traffic has moved, then revoke the old key. [DOC-AUTH-004] Revoke the key immediately rather than waiting for the rotation window if it has been exposed publicly. [DOC-AUTH-004]
+
+Sources:
+- DOC-AUTH-004: API key rotation and scope management (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-AUTH-004::resolution,,,
+VAL-0040,There are charges on our invoice for a service I do not believe we use. Could you explain what these relate to?,"Hello,
+
+Charges for a service not in use may be due to usage-based charges accrued beyond the plan allowance or a resource left running in a non-production environment. [DOC-BILL-001] Check the usage breakdown for the period to identify resources in staging or development environments, which are billed at the same rate as production. [DOC-BILL-001] The billing period runs from the anniversary of the subscription date, not the first of the month. [DOC-BILL-001] Set a usage alert on the billing page to notice unexpected accrual during the period rather than at the end of it. [DOC-BILL-001]
+
+Sources:
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Common causes)
+- DOC-BILL-001: Understanding your invoice and usage breakdown (Resolution)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-BILL-001::common-causes|DOC-BILL-001::resolution,,,
+VAL-0011,We shipped a release yesterday morning that has broken checkout for a portion of our customers. We need to get back to the previous version quickly. What is the fastest safe route?,"Hello,
+
+To revert to the previous revision, open the revisions page for the service and identify the last revision that was healthy. [DOC-DEPLOY-002] Select roll back on that revision to move traffic within roughly thirty seconds without rebuilding. [DOC-DEPLOY-002] If the release included a database migration, roll the migration back before the service. [DOC-DEPLOY-002] Rolling back a failed release restores the container image and its configuration together. [DOC-DEPLOY-002] However, it does not restore data. [DOC-DEPLOY-002] Record the incident and the reason for the rollback before deploying a fix. [DOC-DEPLOY-002]
+
+Sources:
+- DOC-DEPLOY-002: Rolling back a failed release (Resolution)
+- DOC-DEPLOY-002: Rolling back a failed release (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-DEPLOY-002::notes|DOC-DEPLOY-002::resolution,,,
+VAL-0005,Our cursor seems to stop working partway through a long iteration. Is there an expiry we should be handling?,"Hello,
+
+Cursors expire after one hour. [DOC-API-002] Long-running iterations should handle expiry by restarting from a recorded checkpoint. [DOC-API-002]
+
+Sources:
+- DOC-API-002: Pagination and handling large result sets (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-002::notes,,,
+VAL-0022,The service is noticeably slow during our afternoon peak and fine the rest of the day. We have autoscaling enabled so I expected it to cope.,"Hello,
+
+Compare median and 95th percentile latency on the metrics page to check for contention or queueing. [DOC-PERF-001] Check memory utilisation across instances to see if it's above eighty per cent. [DOC-PERF-001] Review the dependency timing breakdown on the trace view to see where the time is being spent. [DOC-PERF-001] Adjust the autoscaling policy if load is predictable. [DOC-PERF-001] Instance count is not scaling with the load pattern. [DOC-PERF-001] A downstream dependency has slowed and the delay is propagating. [DOC-PERF-001]
+
+Sources:
+- DOC-PERF-001: Diagnosing elevated response latency (Resolution)
+- DOC-PERF-001: Diagnosing elevated response latency (Common causes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-PERF-001::common-causes|DOC-PERF-001::resolution,,,
+VAL-0046,when i do pagination some record coming two time and some missing. what is correct way?,"Hello,
+
+Use cursor pagination for large result sets to avoid missing or duplicate records. [DOC-API-002] Pass the next_cursor value from each response as the cursor parameter of the following request, and stop when it is null. [DOC-API-002] Keep page size at or below two hundred. [DOC-API-002] Cursors expire after one hour, so restart from a recorded checkpoint if necessary. [DOC-API-002]
+
+Sources:
+- DOC-API-002: Pagination and handling large result sets (Common causes)
+- DOC-API-002: Pagination and handling large result sets (Resolution)
+- DOC-API-002: Pagination and handling large result sets (Notes)
+
+This reply was drafted by an automated assistant from CloudServe documentation. If it does not resolve your issue, reply to this message and a support engineer will review it.",DOC-API-002::common-causes|DOC-API-002::notes|DOC-API-002::resolution,,,

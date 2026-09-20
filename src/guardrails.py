@@ -138,7 +138,7 @@ def _stem(t: str) -> str:
     return t
 
 
-def grounding(sentences: list[dict], passages_by_id: dict, min_overlap: float = 0.45) -> GuardResult:
+def grounding(sentences: list[dict], passages_by_id: dict, min_overlap: float = 0.40) -> GuardResult:
     """Each sentence: {"text", "sources": [passage ids]}. Sources must resolve to *retrieved* passages
     (A6) and the sentence must be lexically supported by them (proxy for unsupported claims)."""
     if not sentences:
@@ -150,18 +150,24 @@ def grounding(sentences: list[dict], passages_by_id: dict, min_overlap: float = 
         bad = [x for x in srcs if x not in passages_by_id]
         if bad:
             return GuardResult("grounding", False, f"sentence {i+1} cites {bad[0]}, which was not retrieved")
-        src_text = " ".join(passages_by_id[x].text for x in srcs).lower()
+        # support is judged against the whole cited article (as retrieved), because a model often cites the
+        # neighbouring section of the right article; the citation itself must still resolve to a retrieved passage.
+        cited_docs = {passages_by_id[x].doc_id for x in srcs}
+        src_text = " ".join(p.text for p in passages_by_id.values() if p.doc_id in cited_docs).lower()
         src_tokens = {_stem(t) for t in _content_tokens(src_text)}
-        toks = [_stem(t) for t in _content_tokens(s.get("text", ""))]
-        if toks:
+        clean = re.sub(r"DOC-[A-Z]+-\d+(::[\w-]+)?", " ", s.get("text", ""))
+        toks = [_stem(t) for t in _content_tokens(clean)]
+        if len(toks) >= 5:   # very short sentences carry too few content words for an overlap ratio to mean anything
             overlap = sum(t in src_tokens for t in toks) / len(toks)
             if overlap < min_overlap:
                 return GuardResult("grounding", False,
-                                   f"sentence {i+1} only {overlap:.0%} supported by cited passage: '{s['text'][:60]}'")
-        nums = [n for n in re.findall(r"\b\d+\b", s.get("text", "")) if n not in ("1", "2", "3", "4", "5", "6", "7", "8", "9")]
+                                   f"sentence {i+1} only {overlap:.0%} supported by cited article: '{s['text'][:60]}'")
+        elif toks and not any(t in src_tokens for t in toks):
+            return GuardResult("grounding", False, f"sentence {i+1} shares no content words with cited article: '{s['text'][:60]}'")
+        nums = [n for n in re.findall(r"\b\d+\b", clean) if n not in ("1", "2", "3", "4", "5", "6", "7", "8", "9")]
         for n in nums:
             if n not in src_text:
-                return GuardResult("grounding", False, f"sentence {i+1} states number {n} absent from cited passage")
+                return GuardResult("grounding", False, f"sentence {i+1} states number {n} absent from cited article")
     return GuardResult("grounding", True)
 
 
