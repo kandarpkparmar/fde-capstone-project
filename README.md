@@ -16,7 +16,7 @@ ingest -> classify -> retrieve -> route -> generate -> validate(guardrails) -> a
 
 ## 1. Set up (clean machine, tested from a fresh clone)
 
-Requires Python 3.11 or newer (tested on 3.11 and 3.13 locally and in CI) and internet access on first run (downloads the small embedding model, ~90 MB).
+Requires Python 3.11 or newer (tested locally on 3.11, 3.13 and 3.14) and internet access on first run (downloads the small embedding model, ~90 MB).
 
 ```bash
 git clone https://github.com/kandarpkparmar/fde-capstone-project.git && cd fde-capstone-project
