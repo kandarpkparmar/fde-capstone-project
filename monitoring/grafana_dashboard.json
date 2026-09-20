@@ -1,0 +1,8 @@
+{"title":"CloudServe Support Triage","panels":[
+{"type":"timeseries","title":"Tickets per outcome","targets":[{"expr":"sum by (outcome) (rate(tickets_processed_total[5m]))"}]},
+{"type":"timeseries","title":"Tickets by channel","targets":[{"expr":"sum by (channel) (rate(tickets_processed_total[5m]))"}]},
+{"type":"timeseries","title":"Latency p50 / p95","targets":[{"expr":"histogram_quantile(0.5, sum(rate(response_seconds_bucket[5m])) by (le))"},{"expr":"histogram_quantile(0.95, sum(rate(response_seconds_bucket[5m])) by (le))"}]},
+{"type":"timeseries","title":"Guardrail blocks by type","targets":[{"expr":"sum by (guardrail) (increase(guardrail_blocks_total[1h]))"}]},
+{"type":"heatmap","title":"Classifier confidence distribution (drift)","targets":[{"expr":"sum(rate(classifier_confidence_bucket[5m])) by (le)"}]},
+{"type":"stat","title":"LLM fallbacks (provider trouble)","targets":[{"expr":"increase(llm_fallbacks_total[1h])"}]},
+{"type":"stat","title":"Kill switch","targets":[{"expr":"kill_switch_on"}]}]}
